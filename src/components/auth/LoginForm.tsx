@@ -1,137 +1,102 @@
 'use client'
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { LoginData } from '@/types/auth';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { useAuth } from '@/hooks/useAuth';
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/navigation'
+
+interface LoginData {
+  email: string
+  password: string
+}
 
 interface LoginFormProps {
-  onToggleMode: () => void;
+  onToggleMode: () => void
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
-  const { login, isLoading, forgotPassword } = useAuth();
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const { login, isLoading } = useAuth()
+  const router = useRouter()
+  const [error, setError] = useState('')
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<LoginData>();
-
-  const email = watch('email');
+  } = useForm<LoginData>()
 
   const onSubmit = async (data: LoginData) => {
-    const success = await login(data);
+    setError('')
+    const success = await login(data.email, data.password)
+    
     if (success) {
-      console.log('Login successful!');
+      router.push('/home')
     } else {
-      alert('Login failed. Please check your credentials.');
+      setError('Invalid email or password')
     }
-  };
-
-  const handleForgotPassword = async () => {
-    if (email) {
-      const success = await forgotPassword(email);
-      if (success) {
-        setShowForgotPassword(false);
-      }
-    } else {
-      alert('Please enter your email address first.');
-    }
-  };
-
-  if (showForgotPassword) {
-    return (
-      <div className="w-full max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center md:text-5xl lg:text-6xl">
-          Reset Your Password
-        </h2>
-        
-        <div className="space-y-6 md:space-y-8">
-          <Input
-            label="Email"
-            type="email"
-            value={email}
-            placeholder="Enter your email"
-            disabled
-          />
-          
-          <div className="space-y-4 md:space-y-6">
-            <Button
-              onClick={handleForgotPassword}
-              loading={isLoading}
-              size="xl"
-            >
-              Send Reset Link
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => setShowForgotPassword(false)}
-              size="lg"
-            >
-              Back to Login
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center md:text-5xl lg:text-6xl">
+    <div className="w-full max-w-md">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
         Welcome Back!
       </h2>
       
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 md:space-y-8">
-        <Input
-          label="Email or Username"
-          {...register('email', { required: 'Email or username is required' })}
-          error={errors.email?.message}
-          placeholder="Email or Username"
-        />
+      {error && (
+        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+          {error}
+        </div>
+      )}
 
-        <Input
-          label="Password"
-          type="password"
-          {...register('password', { required: 'Password is required' })}
-          error={errors.password?.message}
-          placeholder="Password"
-        />
-
-        <div className="text-right">
-          <button
-            type="button"
-            onClick={() => setShowForgotPassword(true)}
-            className="text-blue-600 hover:text-blue-700 font-semibold text-lg md:text-xl transition-colors duration-200"
-          >
-            Forgot Password?
-          </button>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Email or Username
+          </label>
+          <input
+            type="text"
+            {...register('email', { required: 'Email or username is required' })}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Email or Username"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          )}
         </div>
 
-        <Button
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Password
+          </label>
+          <input
+            type="password"
+            {...register('password', { required: 'Password is required' })}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Password"
+          />
+          {errors.password && (
+            <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+          )}
+        </div>
+
+        <button
           type="submit"
-          size="xl"
-          loading={isLoading}
           disabled={isLoading}
-          className="mt-8"
+          className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
         >
-          Sign In
-        </Button>
+          {isLoading ? 'Signing In...' : 'Sign In'}
+        </button>
       </form>
 
-      <div className="text-center mt-8 md:mt-12">
+      <div className="text-center mt-6">
         <button
           onClick={onToggleMode}
-          className="text-blue-600 hover:text-blue-700 font-semibold text-xl md:text-2xl transition-colors duration-200"
+          className="text-blue-600 hover:text-blue-700 font-medium"
           type="button"
         >
           New here? Get Started
         </button>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -31,10 +31,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             isAuthenticated: true,
             isLoading: false,
           });
+        } else {
+          setState(prev => ({ ...prev, isLoading: false }));
         }
       } catch (error) {
         console.error('Auth check failed:', error);
-      } finally {
         setState(prev => ({ ...prev, isLoading: false }));
       }
     };
@@ -44,36 +45,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (data: LoginData): Promise<boolean> => {
     try {
-      // TODO: Replace with actual API call
-      console.log('Login attempt:', data);
+      setState(prev => ({ ...prev, isLoading: true }));
       
-      // Mock successful login
-      const user: User = {
-        id: '1',
-        email: data.email,
-        username: data.email.split('@')[0],
-        firstName: 'John',
-        lastName: 'Doe',
-      };
+      // Mock authentication - in real app, this would be an API call
+      if (data.email && data.password) {
+        const user: User = {
+          id: '1',
+          email: data.email,
+          username: data.email.split('@')[0],
+          firstName: 'John',
+          lastName: 'Doe',
+        };
 
-      setState({
-        user,
-        isAuthenticated: true,
-        isLoading: false,
-      });
+        setState({
+          user,
+          isAuthenticated: true,
+          isLoading: false,
+        });
 
-      localStorage.setItem('eightydays-user', JSON.stringify(user));
-      return true;
+        localStorage.setItem('eightydays-user', JSON.stringify(user));
+        return true;
+      }
+      return false;
     } catch (error) {
       console.error('Login failed:', error);
+      setState(prev => ({ ...prev, isLoading: false }));
       return false;
     }
   };
 
   const signup = async (data: SignupData): Promise<boolean> => {
     try {
-      // TODO: Replace with actual API call
-      console.log('Signup attempt:', data);
+      setState(prev => ({ ...prev, isLoading: true }));
 
       // Validate passwords match
       if (data.password !== data.confirmPassword) {
@@ -99,6 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return true;
     } catch (error) {
       console.error('Signup failed:', error);
+      setState(prev => ({ ...prev, isLoading: false }));
       return false;
     }
   };
@@ -110,13 +114,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       isLoading: false,
     });
     localStorage.removeItem('eightydays-user');
+    
+    // Redirect to home page
+    if (typeof window !== 'undefined') {
+      window.location.href = '/';
+    }
   };
 
   const forgotPassword = async (email: string): Promise<boolean> => {
     try {
-      // TODO: Replace with actual API call
-      console.log('Password reset requested for:', email);
-      
       // Mock successful password reset request
       alert(`Password reset link sent to ${email}`);
       return true;
