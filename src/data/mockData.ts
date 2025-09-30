@@ -1,254 +1,715 @@
+// data/mockData.ts
 export interface List {
-  id: string
+  _id: string
   title: string
-  description: string
-  owner: string
-  country: string
-  placeCount: number
-  coverImage: string
+  short_description: string
+  creator: {
+    user_id: string
+    username: string
+    first_name: string
+    last_name: string
+    profile_photo: string
+  }
+  stats: {
+    view_count: number
+    place_count: number
+    saved_count: number
+    comment_count: number
+  }
+  cover_photo: {
+    small: string
+    medium: string
+    large: string
+  }
+  countries: Array<{
+    name: string
+    country_code: string
+  }>
+  created_date: string
+  updated_date: string
 }
 
-export interface Destination {
-  id: string
-  title: string
+export interface Place {
+  place_id: string
+  name: string
   description: string
-  image: string
-  owner: string
-  country: string
   rating: number
-  reviewCount: number
+  review_count: number
+  categories: Array<{
+    name: string
+    is_primary: number
+  }>
+  cover_media: {
+    small: string
+    medium: string
+    large: string
+  }
+  open_hours_text: string
 }
 
 export const mockLists: List[] = [
   {
-    id: '1',
+    _id: '1',
+    title: 'Hiking In The Sahyadris',
+    short_description: 'forts, hills, hikes and trails',
+    creator: {
+      user_id: '1',
+      username: 'drashtivmistry',
+      first_name: 'Drashti',
+      last_name: 'Mistry',
+      profile_photo: 'https://picsum.photos/100/100?random=1'
+    },
+    stats: {
+      view_count: 827,
+      place_count: 63,
+      saved_count: 24,
+      comment_count: 1
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=1',
+      medium: 'https://picsum.photos/400/300?random=1',
+      large: 'https://picsum.photos/400/300?random=1'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 5 months ago'
+  },
+  {
+    _id: '2',
     title: 'Go Goa',
-    description: 'Beautiful beaches and vibrant nightlife in Goa',
-    owner: 'anoopkp',
-    country: 'India',
-    placeCount: 15,
-    coverImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400'
+    short_description: 'Beautiful beaches and vibrant nightlife',
+    creator: {
+      user_id: '2',
+      username: 'anoopkp',
+      first_name: 'Anoop',
+      last_name: 'KP',
+      profile_photo: 'https://picsum.photos/100/100?random=2'
+    },
+    stats: {
+      view_count: 450,
+      place_count: 15,
+      saved_count: 12,
+      comment_count: 3
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=2',
+      medium: 'https://picsum.photos/400/300?random=2',
+      large: 'https://picsum.photos/400/300?random=2'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 6 months ago',
+    updated_date: 'Updated 1 month ago'
   },
   {
-    id: '2',
+    _id: '3',
     title: 'Sacred South Indian Destinations',
-    description: 'Spiritual journey through South Indian temples',
-    owner: 'shivanirajput',
-    country: 'India',
-    placeCount: 8,
-    coverImage: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=400'
+    short_description: 'Spiritual journey through South Indian temples',
+    creator: {
+      user_id: '3',
+      username: 'shivanirajput',
+      first_name: 'Shivani',
+      last_name: 'Rajput',
+      profile_photo: 'https://picsum.photos/100/100?random=3'
+    },
+    stats: {
+      view_count: 320,
+      place_count: 8,
+      saved_count: 18,
+      comment_count: 2
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=3',
+      medium: 'https://picsum.photos/400/300?random=3',
+      large: 'https://picsum.photos/400/300?random=3'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 8 months ago',
+    updated_date: 'Updated 2 months ago'
   },
   {
-    id: '3',
+    _id: '4',
     title: 'South Indian Road Trip Highlights',
-    description: 'Amazing road trip destinations in South India',
-    owner: 'athuvishu',
-    country: 'India',
-    placeCount: 12,
-    coverImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400'
+    short_description: 'Amazing road trip destinations in South India',
+    creator: {
+      user_id: '4',
+      username: 'athuvishu',
+      first_name: 'Athul',
+      last_name: 'Vishnu',
+      profile_photo: 'https://picsum.photos/100/100?random=4'
+    },
+    stats: {
+      view_count: 289,
+      place_count: 12,
+      saved_count: 15,
+      comment_count: 4
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=4',
+      medium: 'https://picsum.photos/400/300?random=4',
+      large: 'https://picsum.photos/400/300?random=4'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 7 months ago',
+    updated_date: 'Updated 3 weeks ago'
   },
   {
-    id: '4',
+    _id: '5',
     title: 'Ho Chi Minh City Exploration Guide',
-    description: 'Complete guide to exploring Ho Chi Minh City',
-    owner: 'aaryann',
-    country: 'Vietnam',
-    placeCount: 20,
-    coverImage: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=400'
+    short_description: 'Complete guide to exploring Ho Chi Minh City',
+    creator: {
+      user_id: '5',
+      username: 'aaryann',
+      first_name: 'Aaryan',
+      last_name: 'Nair',
+      profile_photo: 'https://picsum.photos/100/100?random=5'
+    },
+    stats: {
+      view_count: 512,
+      place_count: 20,
+      saved_count: 32,
+      comment_count: 7
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=5',
+      medium: 'https://picsum.photos/400/300?random=5',
+      large: 'https://picsum.photos/400/300?random=5'
+    },
+    countries: [
+      {
+        name: 'Vietnam',
+        country_code: 'VN'
+      }
+    ],
+    created_date: 'Created 4 months ago',
+    updated_date: 'Updated 2 weeks ago'
   },
   {
-    id: '5',
+    _id: '6',
     title: 'Himalayan Adventure Treks',
-    description: 'Discover the thrill of trekking in the Himalayas',
-    owner: 'trekkingguy',
-    country: 'India',
-    placeCount: 10,
-    coverImage: 'https://images.unsplash.com/photo-1509644851169-2acc08aa25b2?w=400'
+    short_description: 'Discover the thrill of trekking in the Himalayas',
+    creator: {
+      user_id: '6',
+      username: 'trekkingguy',
+      first_name: 'Rahul',
+      last_name: 'Sharma',
+      profile_photo: 'https://picsum.photos/100/100?random=6'
+    },
+    stats: {
+      view_count: 678,
+      place_count: 10,
+      saved_count: 45,
+      comment_count: 9
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=6',
+      medium: 'https://picsum.photos/400/300?random=6',
+      large: 'https://picsum.photos/400/300?random=6'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 1 month ago'
   },
   {
-    id: '6',
+    _id: '7',
     title: 'Kerala Backwaters Escape',
-    description: 'Cruise through the tranquil backwaters of Kerala',
-    owner: 'meenaraj',
-    country: 'India',
-    placeCount: 6,
-    coverImage: 'https://images.unsplash.com/photo-1601297183305-6f7aa98f71f7?w=400'
+    short_description: 'Cruise through the tranquil backwaters of Kerala',
+    creator: {
+      user_id: '7',
+      username: 'meenaraj',
+      first_name: 'Meena',
+      last_name: 'Raj',
+      profile_photo: 'https://picsum.photos/100/100?random=7'
+    },
+    stats: {
+      view_count: 423,
+      place_count: 6,
+      saved_count: 28,
+      comment_count: 5
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=7',
+      medium: 'https://picsum.photos/400/300?random=7',
+      large: 'https://picsum.photos/400/300?random=7'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 9 months ago',
+    updated_date: 'Updated 2 months ago'
   },
   {
-    id: '7',
+    _id: '8',
     title: 'European Capitals Tour',
-    description: 'A curated list of must-see European capitals',
-    owner: 'eurotraveller',
-    country: 'Europe',
-    placeCount: 14,
-    coverImage: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400'
+    short_description: 'A curated list of must-see European capitals',
+    creator: {
+      user_id: '8',
+      username: 'eurotraveller',
+      first_name: 'Priya',
+      last_name: 'Patel',
+      profile_photo: 'https://picsum.photos/100/100?random=8'
+    },
+    stats: {
+      view_count: 891,
+      place_count: 14,
+      saved_count: 67,
+      comment_count: 12
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=8',
+      medium: 'https://picsum.photos/400/300?random=8',
+      large: 'https://picsum.photos/400/300?random=8'
+    },
+    countries: [
+      {
+        name: 'Europe',
+        country_code: 'EU'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 3 months ago'
   },
   {
-    id: '8',
+    _id: '9',
     title: 'Beaches of Thailand',
-    description: 'Explore the pristine beaches of Thailand',
-    owner: 'mariah',
-    country: 'Thailand',
-    placeCount: 9,
-    coverImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400'
+    short_description: 'Explore the pristine beaches of Thailand',
+    creator: {
+      user_id: '9',
+      username: 'mariah',
+      first_name: 'Maria',
+      last_name: 'Hernandez',
+      profile_photo: 'https://picsum.photos/100/100?random=9'
+    },
+    stats: {
+      view_count: 567,
+      place_count: 9,
+      saved_count: 38,
+      comment_count: 6
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=9',
+      medium: 'https://picsum.photos/400/300?random=9',
+      large: 'https://picsum.photos/400/300?random=9'
+    },
+    countries: [
+      {
+        name: 'Thailand',
+        country_code: 'TH'
+      }
+    ],
+    created_date: 'Created 5 months ago',
+    updated_date: 'Updated 1 week ago'
   },
   {
-    id: '9',
+    _id: '10',
     title: 'Rajasthan Heritage',
-    description: 'Journey through the forts and palaces of Rajasthan',
-    owner: 'arvind',
-    country: 'India',
-    placeCount: 11,
-    coverImage: 'https://images.unsplash.com/photo-1584956863564-ffb994bcb597?w=400'
+    short_description: 'Journey through the forts and palaces of Rajasthan',
+    creator: {
+      user_id: '10',
+      username: 'arvind',
+      first_name: 'Arvind',
+      last_name: 'Singh',
+      profile_photo: 'https://picsum.photos/100/100?random=10'
+    },
+    stats: {
+      view_count: 734,
+      place_count: 11,
+      saved_count: 52,
+      comment_count: 8
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=10',
+      medium: 'https://picsum.photos/400/300?random=10',
+      large: 'https://picsum.photos/400/300?random=10'
+    },
+    countries: [
+      {
+        name: 'India',
+        country_code: 'IN'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 2 months ago'
   },
   {
-    id: '10',
+    _id: '11',
     title: 'Tokyo City Guide',
-    description: 'Best spots to experience modern and traditional Tokyo',
-    owner: 'yuki',
-    country: 'Japan',
-    placeCount: 18,
-    coverImage: 'https://images.unsplash.com/photo-1518544889280-cf8e6fc5a3c9?w=400'
+    short_description: 'Best spots to experience modern and traditional Tokyo',
+    creator: {
+      user_id: '11',
+      username: 'yuki',
+      first_name: 'Yuki',
+      last_name: 'Tanaka',
+      profile_photo: 'https://picsum.photos/100/100?random=11'
+    },
+    stats: {
+      view_count: 612,
+      place_count: 18,
+      saved_count: 41,
+      comment_count: 11
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=11',
+      medium: 'https://picsum.photos/400/300?random=11',
+      large: 'https://picsum.photos/400/300?random=11'
+    },
+    countries: [
+      {
+        name: 'Japan',
+        country_code: 'JP'
+      }
+    ],
+    created_date: 'Created 8 months ago',
+    updated_date: 'Updated 1 month ago'
   },
   {
-    id: '11',
+    _id: '12',
     title: 'New York Must Visits',
-    description: 'Top attractions in the Big Apple',
-    owner: 'johndoe',
-    country: 'USA',
-    placeCount: 13,
-    coverImage: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400'
+    short_description: 'Top attractions in the Big Apple',
+    creator: {
+      user_id: '12',
+      username: 'johndoe',
+      first_name: 'John',
+      last_name: 'Doe',
+      profile_photo: 'https://picsum.photos/100/100?random=12'
+    },
+    stats: {
+      view_count: 845,
+      place_count: 13,
+      saved_count: 59,
+      comment_count: 14
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=12',
+      medium: 'https://picsum.photos/400/300?random=12',
+      large: 'https://picsum.photos/400/300?random=12'
+    },
+    countries: [
+      {
+        name: 'USA',
+        country_code: 'US'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 2 weeks ago'
   },
   {
-    id: '12',
-    title: 'Australian Outback Journey',
-    description: 'Explore the rugged beauty of Australia’s outback',
-    owner: 'sarah',
-    country: 'Australia',
-    placeCount: 7,
-    coverImage: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400'
+    _id: '14',
+    title: 'New York Must Visits',
+    short_description: 'Top attractions in the Big Apple',
+    creator: {
+      user_id: '12',
+      username: 'johndoe',
+      first_name: 'John',
+      last_name: 'Doe',
+      profile_photo: 'https://picsum.photos/100/100?random=12'
+    },
+    stats: {
+      view_count: 845,
+      place_count: 13,
+      saved_count: 59,
+      comment_count: 14
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=12',
+      medium: 'https://picsum.photos/400/300?random=12',
+      large: 'https://picsum.photos/400/300?random=12'
+    },
+    countries: [
+      {
+        name: 'USA',
+        country_code: 'US'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 2 weeks ago'
+  },{
+    _id: '19',
+    title: 'New York Must Visits',
+    short_description: 'Top attractions in the Big Apple',
+    creator: {
+      user_id: '12',
+      username: 'johndoe',
+      first_name: 'John',
+      last_name: 'Doe',
+      profile_photo: 'https://picsum.photos/100/100?random=12'
+    },
+    stats: {
+      view_count: 845,
+      place_count: 13,
+      saved_count: 59,
+      comment_count: 14
+    },
+    cover_photo: {
+      small: 'https://picsum.photos/400/300?random=12',
+      medium: 'https://picsum.photos/400/300?random=12',
+      large: 'https://picsum.photos/400/300?random=12'
+    },
+    countries: [
+      {
+        name: 'USA',
+        country_code: 'US'
+      }
+    ],
+    created_date: 'Created 1 year ago',
+    updated_date: 'Updated 2 weeks ago'
   }
 ]
 
-export const featuredDestinations: Destination[] = [
+export const featuredPlaces: Place[] = [
   {
-    id: '1',
-    title: 'Kothaligad Fort',
+    place_id: '1',
+    name: 'Kothaligad Fort',
     description: 'A centuries-old hillside fort near Karjat, Maharashtra, beckons hikers with a blend of history and natural beauty.',
-    image: 'https://d3iq0vcqnt2b9k.cloudfront.net/google-places/65a127a1f96aa10a03f0f3b4/photos/medium/65a127a1f96aa10a03f0f3b4-1748256619611',
-    owner: 'drashtivmistry',
-    country: 'India',
     rating: 4.6,
-    reviewCount: 1803
+    review_count: 1803,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=20',
+      medium: 'https://picsum.photos/400/300?random=20',
+      large: 'https://picsum.photos/400/300?random=20'
+    },
+    open_hours_text: 'Open 24 hours'
   },
   {
-    id: '2',
-    title: 'Harihar Fort',
+    place_id: '2',
+    name: 'Harihar Fort',
     description: 'Historic fort with challenging trek and panoramic views',
-    image: 'https://d3iq0vcqnt2b9k.cloudfront.net/google-places/666ae8bc57f6f0dc787e1cc7/photos/medium/666ae8bc57f6f0dc787e1cc7-1718282428521',
-    owner: 'drashtivmistry',
-    country: 'India',
     rating: 4.7,
-    reviewCount: 4721
+    review_count: 4721,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=21',
+      medium: 'https://picsum.photos/400/300?random=21',
+      large: 'https://picsum.photos/400/300?random=21'
+    },
+    open_hours_text: 'Open till 6:00PM'
   },
   {
-    id: '3',
-    title: 'Gorakhgad Fort',
+    place_id: '3',
+    name: 'Gorakhgad Fort',
     description: 'Beautiful trekking destination with ancient architecture',
-    image: 'https://d3iq0vcqnt2b9k.cloudfront.net/google-places/666ae8bb57f6f0dc787e1cc6/photos/medium/666ae8bb57f6f0dc787e1cc6-1718282428597',
-    owner: 'drashtivmistry',
-    country: 'India',
     rating: 4.7,
-    reviewCount: 1344
+    review_count: 1344,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=22',
+      medium: 'https://picsum.photos/400/300?random=22',
+      large: 'https://picsum.photos/400/300?random=22'
+    },
+    open_hours_text: 'Open till 6:03PM'
   },
   {
-    id: '4',
-    title: 'Taj Mahal',
+    place_id: '4',
+    name: 'Taj Mahal',
     description: 'Iconic symbol of love and Mughal architecture in Agra',
-    image: 'https://images.unsplash.com/photo-1570169460693-8c91e198adf1?w=400',
-    owner: 'arvind',
-    country: 'India',
     rating: 4.9,
-    reviewCount: 128934
+    review_count: 128934,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=23',
+      medium: 'https://picsum.photos/400/300?random=23',
+      large: 'https://picsum.photos/400/300?random=23'
+    },
+    open_hours_text: 'Open till 5:30PM'
   },
   {
-    id: '5',
-    title: 'Eiffel Tower',
+    place_id: '5',
+    name: 'Eiffel Tower',
     description: 'World-famous Paris landmark with breathtaking views',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400',
-    owner: 'lucie',
-    country: 'France',
     rating: 4.8,
-    reviewCount: 342109
+    review_count: 342109,
+    categories: [
+      {
+        name: 'Landmark',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=24',
+      medium: 'https://picsum.photos/400/300?random=24',
+      large: 'https://picsum.photos/400/300?random=24'
+    },
+    open_hours_text: 'Open till 11:45PM'
   },
   {
-    id: '6',
-    title: 'Grand Canyon',
+    place_id: '6',
+    name: 'Grand Canyon',
     description: 'Majestic natural wonder carved by the Colorado River',
-    image: 'https://images.unsplash.com/photo-1508264165352-258a6c05b1a7?w=400',
-    owner: 'mike',
-    country: 'USA',
     rating: 4.9,
-    reviewCount: 210985
+    review_count: 210985,
+    categories: [
+      {
+        name: 'Nature',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=25',
+      medium: 'https://picsum.photos/400/300?random=25',
+      large: 'https://picsum.photos/400/300?random=25'
+    },
+    open_hours_text: 'Open 24 hours'
   },
   {
-    id: '7',
-    title: 'Sydney Opera House',
+    place_id: '7',
+    name: 'Sydney Opera House',
     description: 'Famous performing arts center with unique architecture',
-    image: 'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?w=400',
-    owner: 'sarah',
-    country: 'Australia',
     rating: 4.7,
-    reviewCount: 98763
+    review_count: 98763,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=26',
+      medium: 'https://picsum.photos/400/300?random=26',
+      large: 'https://picsum.photos/400/300?random=26'
+    },
+    open_hours_text: 'Open till 8:30PM'
   },
   {
-    id: '8',
-    title: 'Santorini',
+    place_id: '8',
+    name: 'Santorini',
     description: 'Picturesque Greek island with whitewashed houses and sunsets',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400',
-    owner: 'nikos',
-    country: 'Greece',
     rating: 4.8,
-    reviewCount: 73219
+    review_count: 73219,
+    categories: [
+      {
+        name: 'Nature',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=27',
+      medium: 'https://picsum.photos/400/300?random=27',
+      large: 'https://picsum.photos/400/300?random=27'
+    },
+    open_hours_text: ''
   },
   {
-    id: '9',
-    title: 'Kyoto Temples',
+    place_id: '9',
+    name: 'Kyoto Temples',
     description: 'Historic temples and shrines in the heart of Japan',
-    image: 'https://images.unsplash.com/photo-1552635206-14f1a0a7b7b2?w=400',
-    owner: 'yuki',
-    country: 'Japan',
     rating: 4.7,
-    reviewCount: 56412
+    review_count: 56412,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=28',
+      medium: 'https://picsum.photos/400/300?random=28',
+      large: 'https://picsum.photos/400/300?random=28'
+    },
+    open_hours_text: 'Open till 5:00PM'
   },
   {
-    id: '10',
-    title: 'Machu Picchu',
+    place_id: '10',
+    name: 'Machu Picchu',
     description: 'Ancient Incan city nestled high in the Andes mountains',
-    image: 'https://images.unsplash.com/photo-1505672678657-cc7037095e2c?w=400',
-    owner: 'sofia',
-    country: 'Peru',
     rating: 4.9,
-    reviewCount: 65321
+    review_count: 65321,
+    categories: [
+      {
+        name: 'Culture',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=29',
+      medium: 'https://picsum.photos/400/300?random=29',
+      large: 'https://picsum.photos/400/300?random=29'
+    },
+    open_hours_text: 'Open till 5:30PM'
   },
   {
-    id: '11',
-    title: 'Dubai Burj Khalifa',
+    place_id: '11',
+    name: 'Dubai Burj Khalifa',
     description: 'Tallest skyscraper in the world with observation decks',
-    image: 'https://images.unsplash.com/photo-1543340713-8b1f71d2db2d?w=400',
-    owner: 'ahmed',
-    country: 'UAE',
     rating: 4.8,
-    reviewCount: 145632
+    review_count: 145632,
+    categories: [
+      {
+        name: 'Landmark',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=30',
+      medium: 'https://picsum.photos/400/300?random=30',
+      large: 'https://picsum.photos/400/300?random=30'
+    },
+    open_hours_text: 'Open till 11:00PM'
   },
   {
-    id: '12',
-    title: 'Niagara Falls',
+    place_id: '12',
+    name: 'Niagara Falls',
     description: 'Massive waterfalls straddling the US-Canada border',
-    image: 'https://images.unsplash.com/photo-1516905041604-7935af78fdae?w=400',
-    owner: 'mike',
-    country: 'USA/Canada',
     rating: 4.9,
-    reviewCount: 192384
+    review_count: 192384,
+    categories: [
+      {
+        name: 'Nature',
+        is_primary: 1
+      }
+    ],
+    cover_media: {
+      small: 'https://picsum.photos/400/300?random=31',
+      medium: 'https://picsum.photos/400/300?random=31',
+      large: 'https://picsum.photos/400/300?random=31'
+    },
+    open_hours_text: 'Open 24 hours'
   }
 ]
