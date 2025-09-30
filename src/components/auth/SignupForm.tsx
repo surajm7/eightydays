@@ -50,13 +50,13 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
   }
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full">
       <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
         Sign Up To Eighty Days!
       </h2>
       
       {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
           {error}
         </div>
       )}
@@ -73,7 +73,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
                 required: 'First name is required',
                 minLength: { value: 2, message: 'First name must be at least 2 characters' }
               })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
               placeholder="First Name"
             />
             {errors.firstName && (
@@ -90,7 +90,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
                 required: 'Last name is required',
                 minLength: { value: 2, message: 'Last name must be at least 2 characters' }
               })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
               placeholder="Last Name"
             />
             {errors.lastName && (
@@ -112,7 +112,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
                 message: 'Invalid email address'
               }
             })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
             placeholder="Email"
           />
           {errors.email && (
@@ -130,7 +130,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
               required: 'Username is required',
               minLength: { value: 3, message: 'Username must be at least 3 characters' }
             })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
             placeholder="Username"
           />
           {errors.username && (
@@ -148,7 +148,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
               required: 'Password is required',
               minLength: { value: 6, message: 'Password must be at least 6 characters' }
             })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
             placeholder="Password"
           />
           {errors.password && (
@@ -163,9 +163,10 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
           <input
             type="password"
             {...register('confirmPassword', { 
-              required: 'Please confirm your password'
+              required: 'Please confirm your password',
+              validate: value => value === password || 'Passwords do not match'
             })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
             placeholder="Re-enter Password"
           />
           {errors.confirmPassword && (
@@ -176,7 +177,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 disabled:opacity-50 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
           {isLoading ? 'Creating Account...' : 'Get Started'}
         </button>
@@ -185,7 +186,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
       <div className="text-center mt-6">
         <button
           onClick={onToggleMode}
-          className="text-blue-600 hover:text-blue-700 font-medium"
+          className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
           type="button"
         >
           Already a member? Login

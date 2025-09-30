@@ -5,16 +5,19 @@ import { Card } from '@/components/ui/Card';
 import { LoginForm } from './LoginForm';
 import { SignupForm } from './SignupForm';
 
-export const AuthForm: React.FC = () => {
-  const [isLogin, setIsLogin] = React.useState(true);
+interface AuthFormProps {
+  isLogin: boolean;
+  onToggleMode: () => void;
+}
 
+export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onToggleMode }) => {
   return (
-    <Card className="p-8">
+    <div>
       {isLogin ? (
-        <LoginForm onToggleMode={() => setIsLogin(false)} />
+        <LoginForm onToggleMode={onToggleMode} />
       ) : (
-        <SignupForm onToggleMode={() => setIsLogin(true)} />
+        <SignupForm onToggleMode={onToggleMode} />
       )}
-    </Card>
+    </div>
   );
 };
