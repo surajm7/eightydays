@@ -11,10 +11,9 @@ EightyDays is a modern, responsive travel web application inspired by both iOS a
 
 🚀 **Video Demo:** [Watch on YouTube](https://youtu.be/Y8--OGbZyY4)
 
-<p align="center">
-  <a href="https://youtu.be/Y8--OGbZyY4" target="_blank">
-    <img src="./public/eightydays-demo.jpeg" alt="EightyDays Demo" width="700" />
-  </a>
+<img src="./public/eightydays-demo.png" width="700"/>
+
+
 </p>
 
 ## Demo Video
