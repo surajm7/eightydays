@@ -8,6 +8,16 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Eighty Days - Discover Your Next Adventure',
   description: 'Create and share amazing travel experiences with Eighty Days',
+  icons: {
+    icon: [
+      { url: '/eightydaysai_logo.jpeg', sizes: '32x32' },
+      { url: '/eightydaysai_logo.jpeg', sizes: '16x16' },
+    ],
+    apple: [
+      { url: '/eightydaysai_logo.jpeg', sizes: '180x180' },
+    ],
+    shortcut: '/eightydaysai_logo.jpeg',
+  },
 }
 
 export const viewport: Viewport = {
@@ -25,6 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/eightydaysai_logo.jpeg" />
       </head>
       <body className={`${inter.className} antialiased`}>
         <SessionProvider>
