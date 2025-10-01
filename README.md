@@ -5,7 +5,7 @@ EightyDays is a modern, responsive travel web application inspired by both iOS a
 
 
 ## 🚀 Live Demo
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://byewind-dashboard-juspay.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://eightydays-1ve9.vercel.app/)
 
 ## 📱 Screenshots & Demo
 
