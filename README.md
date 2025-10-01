@@ -4,15 +4,22 @@
 EightyDays is a modern, responsive travel web application inspired by both iOS and Android native travel apps, built with Next.js 15, React 19, and Tailwind CSS. The app brings the best of mobile app experiences to the web with intuitive navigation, smooth animations, and native-like interactions.
 
 
-
 ## 🚀 Live Demo
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://byewind-dashboard-juspay.vercel.app/)
 
-## 📱 Screenshots
+## 📱 Screenshots & Demo
 
-Experience **ByeWind** across themes and pages:
+🚀 **Video Demo:** [Watch on YouTube](https://youtu.be/Y8--OGbZyY4)
 
+<p align="center">
+  <a href="https://youtu.be/Y8--OGbZyY4" target="_blank">
+    <img src="./public/eightydays-demo.jpeg" alt="EightyDays Demo" width="700" />
+  </a>
+</p>
 
+## Demo Video
+
+[Watch the demo video](https://github.com/surajm7/eightydays/raw/main/public/EightyDays-demo-video.mov)
 
 ## ✅ Features
 
