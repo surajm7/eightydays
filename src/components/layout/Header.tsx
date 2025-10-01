@@ -1,6 +1,7 @@
 'use client'
 import { useAuth } from '@/hooks/useAuth'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface HeaderProps {
     user: {
@@ -13,23 +14,33 @@ interface HeaderProps {
 export default function Header({ user }: HeaderProps) {
     const { logout } = useAuth()
     const [showUserMenu, setShowUserMenu] = useState(false)
+    const router = useRouter()
+
+    // Add logo click handler
+    const handleLogoClick = () => {
+        router.push('/')
+    }
 
     return (
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
-                    <div className="flex items-center space-x-2">
+                    {/* Logo - Make it clickable */}
+                    <button 
+                        onClick={handleLogoClick}
+                        className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+                    >
                         <img
-                            src='./eightydaysai_logo.jpeg'
+                            src='/eightydaysai_logo.jpeg'
                             alt="EightyDays Logo"
                             className="w-8 h-8 rounded-lg object-cover transition-transform duration-300 hover:scale-110"
                         />
-                        <h1 className="text-2xl font-normal tracking-tight text-gray-900 transition-colors duration-300 hover:text-gray-700">
+                        <h1 className="text-3xl font-normal tracking-tight text-gray-900 transition-colors duration-300 hover:text-gray-700">
                             Eighty&nbsp;Days<span className="align-super text-xs ml-1">™</span>
                         </h1>
-                    </div>
+                    </button>
 
+                    {/* Rest of your header component remains the same... */}
                     {/* User Menu */}
                     <div className="flex items-center space-x-4">
                         {/* Become a Host */}
