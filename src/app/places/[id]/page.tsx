@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { featuredPlaces, type Place } from '@/data/mockData'
+import Image from 'next/image'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/home/Footer'
 
@@ -47,9 +48,11 @@ export default function PlaceDetailPage() {
       <main className="container mx-auto px-4 py-6">
         <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
           {/* Place Image */}
-          <img
+          <Image
             src={place.cover_media.large}
             alt={place.name}
+            width={800}
+            height={400}
             className="w-full h-64 md:h-96 object-cover"
           />
           

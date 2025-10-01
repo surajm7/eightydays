@@ -1,7 +1,15 @@
-import NextAuth from 'next-auth'
+import NextAuth, { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-const handler = NextAuth({
+interface User {
+  id: string
+  email: string
+  name: string
+  firstName: string
+  lastName: string
+}
+
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -19,7 +27,7 @@ const handler = NextAuth({
             name: userEmail.split('@')[0],
             firstName: 'John',
             lastName: 'Doe'
-          }
+          } as User
         }
         return null
       }
@@ -31,9 +39,10 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id
-        token.firstName = (user as any).firstName
-        token.lastName = (user as any).lastName
+        const userData = user as User
+        token.id = userData.id
+        token.firstName = userData.firstName
+        token.lastName = userData.lastName
       }
       return token
     },
@@ -49,6 +58,8 @@ const handler = NextAuth({
   pages: {
     signIn: '/'
   }
-})
+}
+
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
+import Image from 'next/image'
 
 interface GalleryImage {
   id: string
@@ -89,10 +90,12 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
             key={image.id}
             className="w-full h-full flex-shrink-0 relative"
           >
-            <img
+            <Image
               src={image.large}
               alt={image.caption || `Image ${index + 1}`}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority={index === 0}
             />
             {image.caption && (
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">

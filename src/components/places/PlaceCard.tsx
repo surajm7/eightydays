@@ -1,6 +1,7 @@
 'use client'
 
 import { Place } from '@/data/mockData'
+import Image from 'next/image'
 
 interface PlaceCardProps {
   place: Place
@@ -14,9 +15,11 @@ export default function PlaceCard({ place, onClick, showDescription = true }: Pl
       onClick={onClick}
       className="bg-white rounded-xl sm:rounded-2xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
     >
-      <img
+      <Image
         src={place.cover_media.medium}
         alt={place.name}
+        width={300}
+        height={200}
         className="w-full h-40 sm:h-48 object-cover"
       />
       <div className="p-3 sm:p-4">

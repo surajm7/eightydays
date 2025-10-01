@@ -1,16 +1,24 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
-import { User, LoginData, SignupData } from '@/types/auth'
+import { User, SignupData } from '@/types/auth'
+
+interface NextAuthUser {
+  id?: string
+  email?: string
+  name?: string
+  firstName?: string
+  lastName?: string
+}
 
 export function useAuth() {
   const { data: session, status } = useSession()
 
   // Convert NextAuth user to our User type
   const user: User | null = session?.user ? {
-    id: session.user.id,
-    email: session.user.email,
-    username: session.user.email.split('@')[0], // Generate username from email
-    firstName: session.user.firstName || session.user.name?.split(' ')[0] || 'User',
-    lastName: session.user.lastName || session.user.name?.split(' ')[1] || '',
+    id: session.user.id || '',
+    email: session.user.email || '',
+    username: session.user.email?.split('@')[0] || 'user',
+    firstName: (session.user as NextAuthUser).firstName || session.user.name?.split(' ')[0] || 'User',
+    lastName: (session.user as NextAuthUser).lastName || session.user.name?.split(' ')[1] || '',
   } : null
 
   return {

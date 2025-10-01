@@ -27,7 +27,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
     handleSubmit,
     formState: { errors },
     watch,
-    setValue,
   } = useForm<LoginData>()
 
   const onSubmit = async (data: LoginData) => {
@@ -127,7 +126,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
               </div>
 
               <p className="text-gray-600 text-sm text-center">
-                Enter your email address and we'll send you a link to reset your password.
+                Enter your email address and we&apos;ll send you a link to reset your password.
               </p>
 
               <div className="space-y-3">

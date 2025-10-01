@@ -4,26 +4,34 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Fix for default markers in react-leaflet
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+// Fix for default markers in react-leaflet with proper typing
+const defaultIcon = L.Icon.Default;
+delete (defaultIcon.prototype as { _getIconUrl?: () => string })._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
+interface Location {
+  name: string;
+  area: string;
+  position: [number, number];
+  description: string;
+}
+
 export default function MapSection() {
-  const locations = [
+  const locations: Location[] = [
     { 
       name: "Agonda", 
       area: "Canacona", 
-      position: [15.0111, 74.0312] as [number, number],
+      position: [15.0111, 74.0312],
       description: "Agonda Beach, Goa" 
     },
     { 
       name: "Palolem", 
       area: "Canacona", 
-      position: [15.0100, 74.0239] as [number, number],
+      position: [15.0100, 74.0239],
       description: "Palolem Beach, Goa" 
     }
   ];

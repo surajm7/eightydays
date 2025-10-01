@@ -2,6 +2,7 @@
 import { useAuth } from '@/hooks/useAuth'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 interface HeaderProps {
     user: {
@@ -50,10 +51,12 @@ export default function Header({ user }: HeaderProps) {
                         onClick={handleLogoClick}
                         className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
                     >
-                        <img
+                        <Image
                             src='/eightydaysai_logo.jpeg'
                             alt="EightyDays Logo"
-                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg object-cover transition-transform duration-300 hover:scale-110"
+                            width={32}
+                            height={32}
+                            className="rounded-lg object-cover transition-transform duration-300 hover:scale-110"
                         />
                         <h1 className="text-xl sm:text-2xl md:text-3xl font-normal tracking-tight text-gray-900 transition-colors duration-300 hover:text-gray-700">
                             Eighty&nbsp;Days<span className="align-super text-xs ml-1">™</span>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { mockLists, featuredPlaces, type List, type Place } from '@/data/mockData'
-import { Share2 } from 'lucide-react';
+import Image from 'next/image'
 
 import Header from '@/components/layout/Header'
 import Footer from '@/components/home/Footer'
@@ -209,9 +209,11 @@ export default function ListDetailPage() {
                                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                                     {/* Image - Smaller on mobile */}
                                     <div className="flex-shrink-0 mx-auto sm:mx-0">
-                                        <img
+                                        <Image
                                             src={place.cover_media.medium}
                                             alt={place.name}
+                                            width={80}
+                                            height={80}
                                             className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-xl object-cover"
                                         />
                                     </div>

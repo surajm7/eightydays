@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { List } from '@/data/mockData'
+import Image from 'next/image'
 
 interface ListsCarouselProps {
   lists: List[]
@@ -99,9 +100,11 @@ export default function ListsCarousel({ lists, title = "Try Smart Search" }: Lis
               <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg cursor-pointer h-full flex flex-col overflow-hidden">
                 {/* Image Container */}
                 <div className="relative flex-shrink-0">
-                  <img
+                  <Image
                     src={list.cover_photo.medium}
                     alt={list.title}
+                    width={320}
+                    height={192}
                     className="w-full h-36 sm:h-48 object-cover group-hover:brightness-95 transition-all duration-300"
                   />
                   
@@ -193,9 +196,11 @@ export default function ListsCarousel({ lists, title = "Try Smart Search" }: Lis
                     </div>
                     
                     <div className="flex items-center space-x-2">
-                      <img
+                      <Image
                         src={list.creator.profile_photo}
                         alt={list.creator.username}
+                        width={24}
+                        height={24}
                         className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-gray-200"
                       />
                       <span className="text-xs text-gray-500 font-medium">

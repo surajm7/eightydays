@@ -1,6 +1,7 @@
 'use client'
 
 import { Place } from '@/data/mockData'
+import Image from 'next/image'
 
 interface FeaturedDestinationsProps {
   destinations: Place[]
@@ -23,9 +24,11 @@ export default function FeaturedDestinations({ destinations, title = "Featured D
             key={destination.place_id}
             className="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
           >
-            <img
+            <Image
               src={destination.cover_media.medium}
               alt={destination.name}
+              width={300}
+              height={200}
               className="w-full h-40 sm:h-48 object-cover"
             />
             <div className="p-3 sm:p-4">
