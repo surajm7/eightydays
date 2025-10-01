@@ -29,11 +29,11 @@ export default function MapSection() {
   ];
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Beach Locations</h3>
+    <div className="bg-white border border-gray-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Beach Locations</h3>
       
       {/* Leaflet Map */}
-      <div className="rounded-xl overflow-hidden h-48 mb-4">
+      <div className="rounded-lg sm:rounded-xl overflow-hidden h-40 sm:h-48 mb-3 sm:mb-4">
         <MapContainer
           center={[15.0111, 74.0312]}
           zoom={12}
@@ -59,20 +59,19 @@ export default function MapSection() {
       </div>
       
       {/* Location Cards */}
-      <div className="grid gap-3">
+      <div className="grid gap-2 sm:gap-3">
         {locations.map((location, index) => (
           <div 
             key={index}
-            className="p-4 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 hover:shadow-md transition-shadow cursor-pointer"
+            className="p-3 sm:p-4 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => {
-              // You can add map focus logic here
               console.log('Focus on:', location.name);
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="font-bold text-gray-900 text-lg">{location.name}</h4>
-                <p className="text-gray-600 text-sm">{location.area}</p>
+                <h4 className="font-bold text-gray-900 text-sm sm:text-base">{location.name}</h4>
+                <p className="text-gray-600 text-xs sm:text-sm">{location.area}</p>
               </div>
               <div className="text-right">
                 <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
